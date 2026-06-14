@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DREHMOMENT · KFZ-Meisterwerkstatt Berlin — Inspektion, TÜV, Reparatur</title>
+<meta name="description" content="DREHMOMENT — KFZ-Meisterwerkstatt in Berlin. Inspektion, Bremsen, HU/AU, Klimaservice & Reparatur aller Marken zu Festpreisen. Termin online buchen." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --bg:#0a0c10;
+  --bg-2:#0e1117;
+  --surface:rgba(24,29,38,0.6);
+  --surface-2:rgba(32,39,51,0.85);
+  --glass-brd:rgba(220,232,250,0.10);
+  --line:rgba(220,232,250,0.07);
+  --text:#eef3fb;
+  --text-dim:#9aa8bd;
+  --muted:#62718a;
+  --accent:#2fb8ff;
+  --accent-2:#5ee0c0;
+  --accent-deep:#0a7bd0;
+  --radius:14px;--radius-lg:20px;
+  --shadow:0 30px 70px -30px rgba(0,0,0,.85);
+  --maxw:1200px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.disp{font-family:'Space Grotesk',sans-serif;line-height:1.02;letter-spacing:-.03em;font-weight:700}
+.mono{font-family:'JetBrains Mono',monospace}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-weight:500;letter-spacing:.2em;text-transform:uppercase;font-size:.72rem;color:var(--accent)}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 26px}
+.sec-pad{padding:100px 0}
+
+.btn{display:inline-flex;align-items:center;gap:.55rem;font-family:'Space Grotesk';font-weight:600;font-size:.92rem;cursor:pointer;border:none;padding:.9rem 1.6rem;border-radius:8px;transition:transform .18s var(--ease),box-shadow .25s,background .25s}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-deep));color:#04121d;box-shadow:0 12px 32px -10px rgba(47,184,255,.6)}
+.btn-primary:hover{box-shadow:0 16px 42px -8px rgba(47,184,255,.85);transform:translateY(-2px)}
+.btn-ghost{background:rgba(220,232,250,.06);color:var(--text);border:1px solid var(--glass-brd)}
+.btn-ghost:hover{background:rgba(220,232,250,.12);transform:translateY(-2px)}
+.btn-lg{padding:1.05rem 2rem;font-size:1rem}
+.magnetic{transition:box-shadow .25s var(--ease),background .25s var(--ease)!important}
+
+/* utility bar + nav */
+.utilbar{background:#06080b;border-bottom:1px solid var(--line);font-size:.78rem;color:var(--text-dim)}
+.utilbar .wrap{display:flex;justify-content:space-between;align-items:center;height:38px}
+.utilbar .u-right{display:flex;gap:1.4rem;align-items:center}
+.utilbar a{color:var(--text-dim);transition:color .2s}.utilbar a:hover{color:var(--accent)}
+.utilbar .mono{color:var(--accent-2)}
+header.nav{position:sticky;top:0;width:100%;z-index:100;transition:background .35s,backdrop-filter .35s,border-color .35s;border-bottom:1px solid transparent}
+header.nav.scrolled{background:rgba(10,12,16,.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:70px}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:1.35rem;letter-spacing:.02em;display:flex;align-items:center;gap:.5rem}
+.logo .mk{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-deep));display:grid;place-items:center;color:#04121d}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.9rem;color:var(--text-dim);font-weight:500;position:relative;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--accent);transition:width .25s var(--ease)}
+.nav-links a:hover{color:var(--text)}.nav-links a:hover::after{width:100%}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:var(--text);margin:5px 0;transition:.3s}
+
+/* ===== CINEMATIC FULL-BLEED HERO ===== */
+.hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) contrast(1.08) brightness(.62)}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,16,.55) 0%,rgba(10,12,16,.35) 40%,rgba(10,12,16,.95) 100%),radial-gradient(900px 500px at 75% 30%,rgba(47,184,255,.28),transparent 60%)}
+.hero-inner{position:relative;z-index:2;width:100%;padding-bottom:60px}
+.hero h1{font-size:clamp(3rem,9vw,7rem);text-transform:uppercase;margin:1rem 0 1.2rem;text-shadow:0 4px 40px rgba(0,0,0,.5)}
+.hero h1 .blue{color:var(--accent)}
+.hero p.lead{color:var(--text-dim);font-size:1.12rem;max-width:34rem;margin-bottom:2rem}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+/* stat ticker */
+.ticker{position:relative;z-index:2;border-top:1px solid var(--line);background:rgba(6,8,11,.7);backdrop-filter:blur(10px)}
+.ticker .wrap{display:flex;flex-wrap:wrap}
+.ticker .t{flex:1;min-width:160px;padding:24px 0;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:.2rem}
+.ticker .t:last-child{border-right:none}
+.ticker .t .v{font-family:'Space Grotesk';font-weight:700;font-size:2rem;color:var(--text)}
+.ticker .t .l{font-family:'JetBrains Mono';font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ticker .t:not(:last-child){padding-right:24px}
+.ticker .t:not(:first-child){padding-left:24px}
+
+/* section head */
+.sec-head{margin-bottom:3rem;max-width:46rem}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head h2{font-size:clamp(2.1rem,4.6vw,3.4rem);text-transform:uppercase;margin:.7rem 0 .6rem}
+.sec-head p{color:var(--text-dim)}
+
+/* ===== BENTO SERVICES ===== */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:172px;gap:14px}
+.b{position:relative;background:var(--surface);border:1px solid var(--glass-brd);border-radius:var(--radius);padding:1.4rem;overflow:hidden;backdrop-filter:blur(10px);transition:transform .3s var(--ease),border-color .3s;display:flex;flex-direction:column;justify-content:flex-end}
+.b:hover{transform:translateY(-5px);border-color:rgba(47,184,255,.4)}
+.b .ic{position:absolute;top:1.3rem;left:1.4rem;width:44px;height:44px;border-radius:11px;background:rgba(47,184,255,.12);border:1px solid rgba(47,184,255,.25);display:grid;place-items:center;color:var(--accent)}
+.b h3{font-size:1.15rem;margin-bottom:.2rem}
+.b p{font-size:.84rem;color:var(--text-dim)}
+.b.feat{grid-column:span 2;grid-row:span 2;justify-content:flex-end;border-color:rgba(47,184,255,.3)}
+.b.feat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;z-index:-1}
+.b.feat::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(10,12,16,.9));z-index:-1}
+.b.feat h3{font-size:1.9rem;text-transform:uppercase}
+.b.feat p{font-size:.95rem;max-width:24rem}
+.b.feat .ic{width:52px;height:52px}
+.b.wide{grid-column:span 2}
+.b.cta{background:linear-gradient(135deg,rgba(47,184,255,.18),rgba(10,123,208,.1));border-color:rgba(47,184,255,.35);justify-content:center;text-align:center}
+.b.cta h3{font-size:1.2rem}.b.cta .ic{position:static;margin:0 auto .6rem}
+
+/* ===== PROCESS STEPS ===== */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden}
+.step{padding:2.4rem;border-right:1px solid var(--line);position:relative;background:var(--surface)}
+.step:last-child{border-right:none}
+.step .no{font-family:'JetBrains Mono';font-size:3rem;font-weight:700;color:rgba(47,184,255,.25);line-height:1}
+.step h4{font-family:'Space Grotesk';font-size:1.3rem;margin:.6rem 0 .4rem}
+.step p{font-size:.9rem;color:var(--text-dim)}
+
+/* ===== QUOTE / FESTPREISE ===== */
+.quote-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.quote-card{background:var(--bg-2);border:1px solid var(--glass-brd);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+.quote-head{background:var(--surface-2);padding:1.3rem 1.6rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+.quote-head .q-t{font-family:'Space Grotesk';font-weight:600;font-size:1.05rem}
+.quote-head .q-no{font-family:'JetBrains Mono';font-size:.78rem;color:var(--accent-2)}
+.quote-body{padding:.6rem 1.6rem 1.4rem}
+.q-row{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-bottom:1px dashed var(--line);font-size:.92rem}
+.q-row .q-name{color:var(--text-dim)}
+.q-row .q-price{font-family:'JetBrains Mono';font-weight:500;color:var(--text)}
+.q-total{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 1.6rem;background:var(--surface);border-top:1px solid var(--line)}
+.q-total .q-l{font-family:'Space Grotesk';font-weight:600}
+.q-total .q-v{font-family:'Space Grotesk';font-weight:700;font-size:1.6rem;color:var(--accent)}
+.quote-note{font-size:.78rem;color:var(--muted);padding:0 1.6rem 1.2rem}
+.quote-text h2{font-size:clamp(2rem,4vw,3rem);text-transform:uppercase;margin-bottom:1rem}
+.quote-text p{color:var(--text-dim);margin-bottom:1rem}
+.quote-text .checks{list-style:none;margin-top:1.2rem}
+.quote-text .checks li{display:flex;align-items:center;gap:.6rem;padding:.4rem 0;font-size:.95rem}
+.quote-text .checks svg{color:var(--accent-2);flex:none}
+
+/* reviews horizontal */
+.rev-scroll{display:flex;gap:18px;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.rev-scroll::-webkit-scrollbar{height:6px}.rev-scroll::-webkit-scrollbar-thumb{background:var(--glass-brd);border-radius:3px}
+.rev{flex:0 0 340px;scroll-snap-align:start;background:var(--surface);border:1px solid var(--glass-brd);border-radius:var(--radius);padding:1.6rem;backdrop-filter:blur(10px)}
+.rev .stars{color:var(--accent);letter-spacing:2px;margin-bottom:.7rem}
+.rev p{font-size:.95rem;color:var(--text-dim);margin-bottom:1rem}
+.rev .who{display:flex;align-items:center;gap:.7rem}
+.rev .av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-deep));display:grid;place-items:center;color:#04121d;font-weight:700;font-family:'Space Grotesk'}
+.rev .who b{font-size:.9rem}.rev .who span{font-size:.78rem;color:var(--muted);display:block}
+
+/* booking split */
+.book{position:relative;border-top:1px solid var(--line)}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:560px}
+.book-visual{position:relative;overflow:hidden}
+.book-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.6) saturate(1.05)}
+.book-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,12,16,.4),rgba(47,184,255,.2))}
+.book-visual .ov{position:absolute;left:30px;bottom:30px;z-index:2}
+.book-visual .ov h3{font-size:2rem;text-transform:uppercase;margin-bottom:.4rem}
+.book-visual .ov p{color:var(--text-dim);max-width:20rem}
+.book-form{background:var(--bg-2);padding:3rem;display:flex;align-items:center}
+.book-form .inner{width:100%}
+.field{margin-bottom:1.05rem}
+.field label{display:block;font-family:'JetBrains Mono';font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;font-weight:500;color:var(--text-dim);margin-bottom:.4rem}
+.field label .req{color:var(--accent)}
+.field input,.field select,.field textarea{width:100%;background:rgba(10,12,16,.7);border:1px solid var(--glass-brd);border-radius:9px;padding:.8rem .9rem;color:var(--text);font-family:inherit;font-size:.95rem;transition:border-color .2s,box-shadow .2s;min-height:46px}
+.field textarea{min-height:76px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,184,255,.18)}
+.field input::placeholder,.field textarea::placeholder{color:var(--muted)}
+.field.err input,.field.err select{border-color:#ff6b6b;box-shadow:0 0 0 3px rgba(255,107,107,.18)}
+.field .msg{font-size:.76rem;color:#ff6b6b;margin-top:.35rem;display:none}.field.err .msg{display:block}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-success{display:none;text-align:center;padding:2rem 1rem}
+.form-success.show{display:block;animation:pop .5s var(--ease)}
+.form-success .check{width:64px;height:64px;border-radius:50%;margin:0 auto 1rem;background:linear-gradient(135deg,var(--accent-2),var(--accent));display:grid;place-items:center;color:#04121d}
+@keyframes pop{0%{transform:scale(.85);opacity:0}100%{transform:scale(1);opacity:1}}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding:60px 0 30px}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.3fr;gap:32px}
+.foot-grid h5{font-family:'JetBrains Mono';font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.foot-grid p,.foot-grid a{color:var(--text-dim);font-size:.9rem;line-height:1.9;display:block}
+.foot-grid a:hover{color:var(--text)}
+.foot-logo{font-family:'Space Grotesk';font-weight:700;font-size:1.4rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.foot-logo .mk{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--accent),var(--accent-deep));display:grid;place-items:center;color:#04121d}
+.map-embed{border-radius:12px;overflow:hidden;border:1px solid var(--glass-brd);height:150px;margin-top:.3rem}
+.map-embed iframe{width:100%;height:100%;border:0;filter:grayscale(.4) invert(.92) hue-rotate(180deg) brightness(.9) contrast(.9)}
+.foot-bottom{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:.6rem;color:var(--muted);font-size:.82rem}
+
+/* toast */
+.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:300;display:flex;flex-direction:column;gap:.6rem;align-items:center;pointer-events:none}
+.toast{background:var(--surface-2);backdrop-filter:blur(12px);border:1px solid var(--glass-brd);color:var(--text);padding:.8rem 1.2rem;border-radius:9px;font-size:.9rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:.6rem;animation:toastIn .4s var(--ease)}
+.toast .ic{color:var(--accent-2)}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.cursor-glow{position:fixed;top:0;left:0;width:460px;height:460px;margin:-230px 0 0 -230px;border-radius:50%;pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(47,184,255,.14),transparent 65%);mix-blend-mode:screen;filter:blur(10px);opacity:0;transition:opacity .6s var(--ease)}
+.cursor-glow.on{opacity:1}
+
+@media(max-width:1000px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .b.feat{grid-column:span 2}
+  .b.wide{grid-column:span 2}
+}
+@media(max-width:860px){
+  .quote-grid,.book-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}.step{border-right:none;border-bottom:1px solid var(--line)}
+  .book-visual{min-height:300px}
+  .ticker .t{min-width:50%;border-right:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .utilbar .u-left{display:none}
+  .nav-links{position:fixed;top:70px;left:0;width:100%;flex-direction:column;gap:0;background:rgba(10,12,16,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+  .nav-links.open{max-height:360px}
+  .nav-links li{width:100%;border-bottom:1px solid var(--line)}
+  .nav-links a{display:block;padding:1rem 26px}.nav-links a::after{display:none}
+  .burger{display:block}
+}
+@media(max-width:560px){.field-row{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr}.bento{grid-template-columns:1fr}.b.feat,.b.wide{grid-column:span 1}.b.feat{grid-row:span 2}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+<span id="top"></span>
+
+<!-- UTILITY BAR -->
+<div class="utilbar">
+  <div class="wrap">
+    <div class="u-left">Meisterbetrieb · alle Marken · <span class="mono">12 Mon. Garantie</span></div>
+    <div class="u-right">
+      <span class="mono">Mo–Fr 8–18 · Sa 9–13</span>
+      <a href="tel:+4930000000">☎ 030 000 000</a>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo"><span class="mk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg></span>DREHMOMENT</a>
+    <nav><ul class="nav-links" id="navLinks">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#ablauf">Ablauf</a></li>
+      <li><a href="#preise">Preise</a></li>
+      <li><a href="#bewertungen">Bewertungen</a></li>
+      <li><a href="#termin">Termin</a></li>
+    </ul></nav>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <a href="#termin" class="btn btn-primary">Termin buchen</a>
+      <button class="burger" id="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== CINEMATIC HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"><img src="https://images.unsplash.com/photo-1486006920555-c77dcf18193c?q=75&auto=format&fit=crop&w=1600" alt="KFZ-Werkstatt" onerror="this.style.opacity=.2"/></div>
+  <div class="hero-inner">
+    <div class="wrap">
+      <span class="eyebrow reveal">// KFZ-Meisterbetrieb · Berlin-Kreuzberg</span>
+      <h1 class="reveal">Werkstatt mit<br/><span class="blue">Drehmoment</span></h1>
+      <p class="lead reveal">Inspektion, Bremsen, HU/AU und Reparatur für alle Marken – ehrlich, schnell und zum garantierten Festpreis.</p>
+      <div class="hero-cta reveal">
+        <a href="#termin" class="btn btn-primary btn-lg">Termin online buchen
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#preise" class="btn btn-ghost btn-lg">Festpreise ansehen</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- STAT TICKER -->
+<div class="ticker">
+  <div class="wrap">
+    <div class="t reveal"><span class="v mono" data-count="15" data-suffix="+">0</span><span class="l">Jahre Erfahrung</span></div>
+    <div class="t reveal"><span class="v mono" data-count="8000" data-suffix="+">0</span><span class="l">Fahrzeuge repariert</span></div>
+    <div class="t reveal"><span class="v mono" data-count="4.9" data-decimals="1">0</span><span class="l">★ Google-Bewertung</span></div>
+    <div class="t reveal"><span class="v mono" data-count="24" data-suffix="h">0</span><span class="l">Schnellster Termin</span></div>
+  </div>
+</div>
+
+<!-- ===== BENTO SERVICES ===== -->
+<section class="sec-pad" id="leistungen">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">// Leistungen</span>
+      <h2>Alles aus einer Hand</h2>
+      <p>Von der kleinen Wartung bis zur großen Reparatur – für alle Fabrikate.</p>
+    </div>
+    <div class="bento">
+      <div class="b feat reveal">
+        <img src="https://images.unsplash.com/photo-1632823469850-1b7b1e8b7e2e?q=75&auto=format&fit=crop&w=800" alt="" onerror="this.style.display='none'"/>
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-2-2 2.3-2.3z"/></svg></div>
+        <h3>Inspektion &amp; Wartung</h3>
+        <p>Herstellervorgaben, scheckheftkonform, mit Originalteilen – Ihr Auto bleibt zuverlässig und wertstabil.</p>
+      </div>
+      <div class="b reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg></div><h3>Bremsen</h3><p>Beläge, Scheiben, Flüssigkeit.</p></div>
+      <div class="b reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>HU / AU (TÜV)</h3><p>Direkt vor Ort, inkl. Check.</p></div>
+      <div class="b reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M4 6l16 12M20 6L4 18"/></svg></div><h3>Klimaservice</h3><p>Befüllung &amp; Desinfektion.</p></div>
+      <div class="b reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg></div><h3>Reifen &amp; Räder</h3><p>Wechsel &amp; Einlagerung.</p></div>
+      <div class="b wide reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></div><h3>Computer-Fehlerdiagnose</h3><p>Auslesen aller Steuergeräte – wir finden die Ursache, nicht nur das Symptom.</p></div>
+      <div class="b cta reveal"><div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><h3>Noch Fragen?<br/>030 000 000</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS ===== -->
+<section class="sec-pad" id="ablauf" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">// So läuft's ab</span>
+      <h2>In 3 Schritten startklar</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="no">01</div><h4>Termin buchen</h4><p>Online in 60 Sekunden oder kurz anrufen – Wunschtermin auswählen.</p></div>
+      <div class="step reveal" data-delay="90"><div class="no">02</div><h4>Festpreis erhalten</h4><p>Wir prüfen Ihr Fahrzeug und nennen Ihnen einen verbindlichen Festpreis – kostenlos.</p></div>
+      <div class="step reveal" data-delay="180"><div class="no">03</div><h4>Reparatur &amp; Abholung</h4><p>Pünktlich fertig, auf Wunsch mit Hol- &amp; Bringservice und Ersatzwagen.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUOTE / FESTPREISE ===== -->
+<section class="sec-pad" id="preise" style="padding-top:20px">
+  <div class="wrap quote-grid">
+    <div class="quote-card reveal">
+      <div class="quote-head"><span class="q-t">Kostenvoranschlag</span><span class="q-no">#KVA-2026 · unverbindlich</span></div>
+      <div class="quote-body">
+        <div class="q-row"><span class="q-name">Ölwechsel inkl. Filter</span><span class="q-price">ab 89,00 €</span></div>
+        <div class="q-row"><span class="q-name">HU / AU (TÜV)</span><span class="q-price">129,00 €</span></div>
+        <div class="q-row"><span class="q-name">Klimaservice</span><span class="q-price">ab 79,00 €</span></div>
+        <div class="q-row"><span class="q-name">Inspektion (klein)</span><span class="q-price">ab 149,00 €</span></div>
+        <div class="q-row"><span class="q-name">Bremsbeläge vorn</span><span class="q-price">ab 119,00 €</span></div>
+        <div class="q-row"><span class="q-name">Reifenwechsel (4 Räder)</span><span class="q-price">39,00 €</span></div>
+      </div>
+      <div class="q-total"><span class="q-l">Diagnose &amp; Beratung</span><span class="q-v">0,00 €</span></div>
+      <div class="quote-note">* Richtpreise für gängige Modelle. Ihren exakten Festpreis nennen wir nach kurzer, kostenloser Prüfung.</div>
+    </div>
+    <div class="quote-text reveal">
+      <span class="eyebrow">// Festpreise</span>
+      <h2>Transparent statt Überraschung</h2>
+      <p>Keine versteckten Kosten, keine bösen Überraschungen bei der Abholung. Sie wissen vorher genau, was die Reparatur kostet.</p>
+      <ul class="checks">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg>Verbindlicher Festpreis vorab</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg>Kostenlose Diagnose &amp; Beratung</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg>12 Monate Garantie auf alle Arbeiten</li>
+      </ul>
+      <a href="#termin" class="btn btn-primary" style="margin-top:1.6rem">Festpreis anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="sec-pad" id="bewertungen" style="padding-top:20px">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">// Bewertungen</span>
+      <h2>4,9 ★ bei Google</h2>
+      <p>Über 600 echte Bewertungen zufriedener Kunden in Berlin.</p>
+    </div>
+    <div class="rev-scroll" id="revScroll"></div>
+  </div>
+</section>
+
+<!-- ===== BOOKING SPLIT ===== -->
+<section class="book" id="termin">
+  <div class="book-grid">
+    <div class="book-visual reveal">
+      <img src="https://images.unsplash.com/photo-1507977800620-9b2a0b4e2c2b?q=75&auto=format&fit=crop&w=900" alt="Werkstatt" onerror="this.style.opacity=.2"/>
+      <div class="ov"><h3>Termin anfragen</h3><p>Antwort innerhalb von 30 Minuten zu Geschäftszeiten – mit Festpreis-Angebot.</p></div>
+    </div>
+    <div class="book-form">
+      <div class="inner">
+        <div id="formInner">
+          <form id="bookForm" novalidate>
+            <div class="field-row">
+              <div class="field"><label for="b-brand">Marke &amp; Modell <span class="req">*</span></label><input type="text" id="b-brand" placeholder="VW Golf 7" required/><span class="msg">Bitte Fahrzeug angeben.</span></div>
+              <div class="field"><label for="b-plate">Kennzeichen</label><input type="text" id="b-plate" placeholder="B-AB 1234"/></div>
+            </div>
+            <div class="field"><label for="b-service">Leistung <span class="req">*</span></label>
+              <select id="b-service" required><option value="">Wählen…</option><option>Inspektion / Wartung</option><option>Bremsen</option><option>HU / AU (TÜV)</option><option>Klimaservice</option><option>Reifen / Räder</option><option>Ölwechsel</option><option>Fehlerdiagnose</option><option>Sonstiges</option></select>
+              <span class="msg">Bitte Leistung wählen.</span></div>
+            <div class="field-row">
+              <div class="field"><label for="b-date">Wunschtermin <span class="req">*</span></label><input type="date" id="b-date" required/><span class="msg">Bitte Datum wählen.</span></div>
+              <div class="field"><label for="b-name">Name <span class="req">*</span></label><input type="text" id="b-name" placeholder="Max Mustermann" required/><span class="msg">Bitte Namen eingeben.</span></div>
+            </div>
+            <div class="field"><label for="b-phone">Telefon <span class="req">*</span></label><input type="tel" id="b-phone" placeholder="+49 30 …" required/><span class="msg">Bitte gültige Telefonnummer eingeben.</span></div>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Termin anfragen</button>
+          </form>
+        </div>
+        <div class="form-success" id="formSuccess">
+          <div class="check"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3 style="margin-bottom:.4rem">Anfrage erhalten!</h3>
+          <p style="color:var(--text-dim)" id="successText">Wir melden uns in Kürze.</p>
+          <button class="btn btn-ghost" style="margin-top:1.4rem" onclick="resetForm()">Neue Anfrage</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><span class="mk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>DREHMOMENT</div>
+        <p>KFZ-Meisterwerkstatt in Berlin.<br/>Reparatur &amp; Wartung aller Marken seit 2009.</p>
+      </div>
+      <div><h5>Leistungen</h5><a href="#leistungen">Inspektion</a><a href="#leistungen">Bremsen</a><a href="#leistungen">HU / AU</a><a href="#leistungen">Klimaservice</a></div>
+      <div><h5>Kontakt</h5><a href="tel:+4930000000">030 000 000</a><a href="mailto:termin@drehmoment-berlin.de">termin@drehmoment-berlin.de</a><p>Oranienstraße 1<br/>10999 Berlin</p></div>
+      <div><h5>Anfahrt</h5><div class="map-embed"><iframe title="Standort" loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=13.41%2C52.49%2C13.43%2C52.503&layer=mapnik&marker=52.4965%2C13.4205"></iframe></div></div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 DREHMOMENT Berlin. Alle Rechte vorbehalten.</span><span>Impressum · Datenschutz</span></div>
+  </div>
+</footer>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+const REVIEWS=[
+  {n:'Stefan K.',c:'BMW 320d',t:'Schnell, ehrlich und fairer Festpreis. Endlich eine Werkstatt, der man vertrauen kann!'},
+  {n:'Aylin D.',c:'VW Polo',t:'Termin am nächsten Tag, Auto pünktlich fertig. Sehr freundliches Team.'},
+  {n:'Marco R.',c:'Audi A4',t:'HU ohne Stress, kleine Mängel direkt behoben. Klare Empfehlung in Berlin.'},
+  {n:'Jana P.',c:'Opel Corsa',t:'Hol- und Bringservice ist Gold wert. Top organisiert und transparent.'},
+];
+document.getElementById('revScroll').innerHTML=REVIEWS.map(r=>`
+  <div class="rev"><div class="stars">★★★★★</div><p>„${r.t}"</p><div class="who"><div class="av">${r.n[0]}</div><div><b>${r.n}</b><span>${r.c}</span></div></div></div>`).join('');
+
+function toast(m){const w=document.getElementById('toastWrap');const e=document.createElement('div');e.className='toast';e.innerHTML=`<span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>${m}`;w.appendChild(e);setTimeout(()=>{e.style.transition='opacity .3s,transform .3s';e.style.opacity='0';e.style.transform='translateY(10px)';setTimeout(()=>e.remove(),300);},2600);}
+
+const form=document.getElementById('bookForm');
+form.addEventListener('submit',e=>{
+  e.preventDefault();let ok=true,first=null;
+  [{id:'b-brand'},{id:'b-service'},{id:'b-date'},{id:'b-name'},{id:'b-phone',test:v=>v.replace(/[^0-9]/g,'').length>=6}].forEach(f=>{
+    const el=document.getElementById(f.id),wrap=el.closest('.field');
+    const valid=f.test?f.test(el.value):el.value.trim()!=='';
+    wrap.classList.toggle('err',!valid);if(!valid){ok=false;if(!first)first=el;}
+  });
+  if(!ok){first&&first.focus();return;}
+  const name=document.getElementById('b-name').value.split(' ')[0];
+  const date=document.getElementById('b-date').value;
+  document.getElementById('successText').textContent=`${name}, wir haben Ihre Anfrage für den ${date.split('-').reverse().join('.')} erhalten und melden uns mit einem Festpreis-Angebot.`;
+  document.getElementById('formInner').style.display='none';
+  document.getElementById('formSuccess').classList.add('show');
+});
+form.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',()=>el.closest('.field').classList.remove('err')));
+function resetForm(){form.reset();document.getElementById('formSuccess').classList.remove('show');document.getElementById('formInner').style.display='block';}
+
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>30),{passive:true});
+const navLinks=document.getElementById('navLinks');
+document.getElementById('burger').onclick=()=>navLinks.classList.toggle('open');
+navLinks.querySelectorAll('a').forEach(a=>a.onclick=()=>navLinks.classList.remove('open'));
+
+const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){en.target.style.transitionDelay=(en.target.dataset.delay||0)+'ms';en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{if(el.closest('.bento'))el.dataset.delay=(i%4)*70;io.observe(el);});
+
+const cio=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){animateCount(en.target);cio.unobserve(en.target);}});},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(c=>cio.observe(c));
+function animateCount(el){const target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.decimals||0),suf=el.dataset.suffix||'';const dur=1400,start=performance.now();function tick(now){const p=Math.min((now-start)/dur,1),eased=1-Math.pow(1-p,3),val=target*eased;el.textContent=(dec?val.toFixed(dec):Math.floor(val).toLocaleString('de-DE'))+suf;if(p<1)requestAnimationFrame(tick);else el.textContent=(dec?target.toFixed(dec):target.toLocaleString('de-DE'))+suf;}requestAnimationFrame(tick);}
+
+(function(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches||matchMedia('(pointer:coarse)').matches)return;
+  const g=document.getElementById('cursorGlow');let tx=innerWidth/2,ty=innerHeight/2,x=tx,y=ty,raf=null,on=false;
+  function move(px,py){tx=px;ty=py;if(!on){on=true;g.classList.add('on');}if(!raf)loop();}
+  function loop(){x+=(tx-x)*.12;y+=(ty-y)*.12;g.style.transform=`translate(${x}px,${y}px)`;if(Math.abs(tx-x)>.5||Math.abs(ty-y)>.5)raf=requestAnimationFrame(loop);else{g.style.transform=`translate(${tx}px,${ty}px)`;raf=null;}}
+  addEventListener('pointermove',e=>move(e.clientX,e.clientY),{passive:true});
+  addEventListener('mouseout',e=>{if(!e.relatedTarget){g.classList.remove('on');on=false;}});
+})();
+(function(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches||matchMedia('(pointer:coarse)').matches)return;
+  document.querySelectorAll('.hero-cta .btn, .nav .btn-primary').forEach(btn=>{
+    btn.classList.add('magnetic');let tx=0,ty=0,cx=0,cy=0,raf=null;
+    btn.addEventListener('pointermove',e=>{const r=btn.getBoundingClientRect();tx=(e.clientX-(r.left+r.width/2))*.3;ty=(e.clientY-(r.top+r.height/2))*.3;if(!raf)loop();});
+    btn.addEventListener('pointerleave',()=>{tx=0;ty=0;if(!raf)loop();});
+    function loop(){cx+=(tx-cx)*.2;cy+=(ty-cy)*.2;btn.style.transform=`translate(${cx.toFixed(2)}px,${cy.toFixed(2)}px)`;if(Math.abs(tx-cx)>.1||Math.abs(ty-cy)>.1)raf=requestAnimationFrame(loop);else{btn.style.transform=(tx||ty)?`translate(${tx}px,${ty}px)`:'';raf=null;}}
+  });
+})();
+</script>
+</body>
+</html>
